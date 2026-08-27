@@ -1,6 +1,283 @@
-&lt;!DOCTYPE html&gt;
-&lt;html lang="es"&gt;
-&lt;head&gt;
-&lt;meta charset="UTF-8"&gt;&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;
-&lt;title&gt;Recepción – Resumen – Droguería Garzón&lt;/title&gt;
-placeholder
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recepción – Resumen – Droguería Garzón</title>
+<style>
+:root{--bg:#0b1220;--card:#141b2d;--card2:#1b2438;--border:#28324a;--acc:#0172bb;--acc2:#4ea8de;--grn:#16a34a;--ylw:#f0b429;--red:#ef4444;--txt:#e7ecf5;--muted:#8996ad;--font:'Segoe UI',system-ui,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:var(--font);font-size:14px}
+body.locked>.wrap{display:none}
+#pw-gate{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px}
+#pw-gate.hidden{display:none}
+.pw-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:32px 28px;max-width:340px;width:100%;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.4)}
+.pw-box h2{font-size:16px;margin-bottom:6px;color:#fff}
+.pw-box p{font-size:12px;color:var(--muted);margin-bottom:18px}
+.pw-box input{width:100%;background:var(--card2);border:1px solid var(--border);color:var(--txt);padding:10px 12px;border-radius:8px;font-size:14px;margin-bottom:10px;text-align:center}
+.pw-box button{width:100%;background:linear-gradient(135deg,var(--acc),var(--acc2));border:none;color:#fff;padding:10px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer}
+.pw-box .pw-err{color:var(--red);font-size:11.5px;margin-top:8px;min-height:14px}
+.hdr{background:linear-gradient(135deg,#04263e,#0172bb);padding:16px 20px}
+.hdr h1{font-size:18px;color:#fff}
+.hdr p{font-size:11px;color:#cfe6f8;margin-top:2px}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px}
+.card-title{font-size:13px;font-weight:700;margin-bottom:12px;color:#fff}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.kpi{background:var(--card2);border-radius:8px;padding:10px;text-align:center}
+.kpi-val{font-size:19px;font-weight:800;color:#fff}
+.kpi-val.red{color:var(--red)} .kpi-val.gold{color:var(--ylw)} .kpi-val.green{color:var(--grn)}
+.kpi-lbl{font-size:10.5px;color:var(--muted);margin-top:3px}
+.mvp{display:flex;align-items:center;gap:10px;background:var(--card2);border-radius:8px;padding:10px 14px}
+.mvp .medal{font-size:22px}
+.mvp b{color:#fff;font-size:14px}
+.mvp span{color:var(--muted);font-size:11.5px;display:block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead th{background:var(--card2);color:var(--muted);font-weight:600;padding:7px 8px;text-align:left;white-space:nowrap}
+tbody td{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.04)}
+.num{text-align:right;color:#fff;font-weight:600}
+.muted{color:var(--muted)}
+.atip{color:var(--ylw)}
+.empty{color:var(--muted);font-style:italic;padding:8px 0}
+.twrap{overflow-x:auto}
+.hbar-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;font-size:11px}
+.hbar-lbl{width:34px;color:var(--muted)}
+.hbar-lbl2{width:150px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0}
+.hbar-track{flex:1;background:var(--card2);border-radius:5px;height:8px;overflow:hidden}
+.hbar-fill{background:linear-gradient(90deg,var(--acc),var(--acc2));height:100%}
+.hbar-val{width:44px;text-align:right;color:#fff;font-weight:600}
+.foot{text-align:center;color:var(--muted);font-size:10.5px;padding:16px 0}
+</style>
+</head>
+<body class="locked">
+<div id="pw-gate">
+  <div class="pw-box">
+    <h2>🔒 Recepción – Resumen</h2>
+    <p>Ingresá la clave de acceso para continuar.</p>
+    <form id="pw-form">
+      <input type="password" id="pw-input" placeholder="Clave" autocomplete="off" autofocus>
+      <button type="submit">Ingresar</button>
+      <div class="pw-err" id="pw-err"></div>
+    </form>
+  </div>
+</div>
+<div class="hdr">
+  <h1>📦 Recepción – Droguería Garzón (resumen)</h1>
+  <p>Actualizado 27/08/2026 14:21 · Vista resumida para acceso externo</p>
+</div>
+<div class="wrap">
+
+  <div class="card">
+    <div class="card-title">Hoy (27/08/2026)</div>
+    <div class="kpis">
+      <div class="kpi"><div class="kpi-val">7.765</div><div class="kpi-lbl">Unidades ingresadas</div></div>
+      <div class="kpi"><div class="kpi-val">14</div><div class="kpi-lbl">Remitos</div></div>
+      <div class="kpi"><div class="kpi-val">4</div><div class="kpi-lbl">Proveedores</div></div>
+      <div class="kpi"><div class="kpi-val gold">59.7%</div><div class="kpi-lbl">Meta diaria (13.000)</div></div>
+    </div>
+    <div class="mvp" style="margin-top:12px"><div class="medal">🏆</div><div><b>M. SANTOS</b><span>MVP del día · 3.246 u. en 9 remitos</span></div></div>
+    <div style="margin-top:14px"><div class="hbar-row"><div class="hbar-lbl">08h</div><div class="hbar-track"><div class="hbar-fill" style="width:37%"></div></div><div class="hbar-val">1.056</div></div><div class="hbar-row"><div class="hbar-lbl">11h</div><div class="hbar-track"><div class="hbar-fill" style="width:100%"></div></div><div class="hbar-val">2.888</div></div><div class="hbar-row"><div class="hbar-lbl">12h</div><div class="hbar-track"><div class="hbar-fill" style="width:38%"></div></div><div class="hbar-val">1.098</div></div><div class="hbar-row"><div class="hbar-lbl">13h</div><div class="hbar-track"><div class="hbar-fill" style="width:94%"></div></div><div class="hbar-val">2.723</div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Proveedores ingresados hoy</div>
+    <div class="hbar-row"><div class="hbar-lbl2">GLOBAL MED S.A.</div><div class="hbar-track"><div class="hbar-fill" style="width:100%"></div></div><div class="hbar-val">5.521</div></div><div class="hbar-row"><div class="hbar-lbl2">PEREZ HNOS Y CIA SRL</div><div class="hbar-track"><div class="hbar-fill" style="width:19%"></div></div><div class="hbar-val">1.056</div></div><div class="hbar-row"><div class="hbar-lbl2">DROGUERIA VIEL SRL</div><div class="hbar-track"><div class="hbar-fill" style="width:15%"></div></div><div class="hbar-val">846</div></div><div class="hbar-row"><div class="hbar-lbl2">DROGUERIA DEL SUD SA</div><div class="hbar-track"><div class="hbar-fill" style="width:6%"></div></div><div class="hbar-val">342</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Agosto 2026</div>
+    <div class="kpis">
+      <div class="kpi"><div class="kpi-val">288.686</div><div class="kpi-lbl">Unidades del mes</div></div>
+      <div class="kpi"><div class="kpi-val">721</div><div class="kpi-lbl">Remitos</div></div>
+      <div class="kpi"><div class="kpi-val green">105.7%</div><div class="kpi-lbl">Meta mensual</div></div>
+      <div class="kpi"><div class="kpi-val">14.434</div><div class="kpi-lbl">Promedio diario</div></div>
+    </div>
+    <div class="mvp" style="margin-top:12px"><div class="medal">🥇</div><div><b>V. MAIZARES</b><span>MVP del mes · 90.177 u. en 154 remitos</span></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📦 Pendientes de Ingreso (remitos sin pickear)</div>
+    <div class="kpis" style="margin-bottom:12px">
+      <div class="kpi"><div class="kpi-val red">14</div><div class="kpi-lbl">Remitos pendientes/parciales</div></div>
+      <div class="kpi"><div class="kpi-val gold">4.659</div><div class="kpi-lbl">Unidades sin pickear</div></div>
+      <div class="kpi"><div class="kpi-val red">0,4d</div><div class="kpi-lbl">Días para ponerse al día</div></div>
+      <div class="kpi"><div class="kpi-val green">111</div><div class="kpi-lbl">Confirmados</div></div>
+    </div>
+    <div class="twrap">
+      <table>
+        <thead><tr><th>Remito</th><th>Fecha factura</th><th>Fecha recepción</th><th>Proveedor</th><th>Lab.</th>
+        <th style="text-align:right">Uds. pend.</th><th>Estado</th><th style="text-align:right">Atraso vs F.F</th></tr></thead>
+        <tbody>
+    <tr>
+      <td>0225R00203177</td>
+      <td>20/08/2026</td>
+      <td class="muted">sin sello</td>
+      <td>DROGUERIA DEL SUD S.A.</td>
+      <td class="muted">RAYMOS MEGALABS ARGENTINA</td>
+      <td class="num atip">204</td>
+      <td class="muted">pendiente</td>
+      <td class="num">7d</td>
+    </tr>
+    <tr>
+      <td>0225R00203142</td>
+      <td>20/08/2026</td>
+      <td class="muted">sin sello</td>
+      <td>DROGUERIA DEL SUD S.A.</td>
+      <td class="muted">IVAX ARG.(DISPROF.)</td>
+      <td class="num">9</td>
+      <td class="muted">parcial</td>
+      <td class="num">7d</td>
+    </tr>
+    <tr>
+      <td>0225R00203156</td>
+      <td>20/08/2026</td>
+      <td class="muted">sin sello</td>
+      <td>DROGUERIA DEL SUD S.A.</td>
+      <td class="muted">IVAX ARG.(DISPROF.)</td>
+      <td class="num">3</td>
+      <td class="muted">parcial</td>
+      <td class="num">7d</td>
+    </tr>
+    <tr>
+      <td>A-0003-00173160</td>
+      <td>21/08/2026</td>
+      <td class="">27/08/2026</td>
+      <td>DISTRISAM S.A.</td>
+      <td class="muted">ECZANE PHARMA, ORGANON ARGENTINA S.A.</td>
+      <td class="num atip">297</td>
+      <td class="muted">pendiente</td>
+      <td class="num">6d</td>
+    </tr>
+    <tr>
+      <td>0225R00207281</td>
+      <td>21/08/2026</td>
+      <td class="muted">sin sello</td>
+      <td>DROGUERIA DEL SUD S.A.</td>
+      <td class="muted">GADOR S.A. ESP</td>
+      <td class="num atip">425</td>
+      <td class="muted">pendiente</td>
+      <td class="num">6d</td>
+    </tr>
+    <tr>
+      <td>0225R00207118</td>
+      <td>21/08/2026</td>
+      <td class="muted">sin sello</td>
+      <td>DROGUERIA DEL SUD S.A.</td>
+      <td class="muted">IVAX ARG.(DISPROF.)</td>
+      <td class="num atip">5</td>
+      <td class="muted">pendiente</td>
+      <td class="num">6d</td>
+    </tr>
+    <tr>
+      <td>0225R00211796</td>
+      <td>21/08/2026</td>
+      <td class="muted">sin sello</td>
+      <td>DROGUERIA DEL SUD S.A.</td>
+      <td class="muted">ASPEN (DISPRO)</td>
+      <td class="num atip">14</td>
+      <td class="muted">pendiente</td>
+      <td class="num">6d</td>
+    </tr>
+    <tr>
+      <td>0225R00207282</td>
+      <td>21/08/2026</td>
+      <td class="muted">sin sello</td>
+      <td>DROGUERIA DEL SUD S.A.</td>
+      <td class="muted">BAUSCH &amp; LOMB-BIOCUMED</td>
+      <td class="num">10</td>
+      <td class="muted">parcial</td>
+      <td class="num">6d</td>
+    </tr>
+    <tr>
+      <td>A-0003-00173311</td>
+      <td>24/08/2026</td>
+      <td class="">27/08/2026</td>
+      <td>DISTRISAM S.A.</td>
+      <td class="muted">BALIARDA S.A., ORGANON ARGENTINA S.A.</td>
+      <td class="num atip">568</td>
+      <td class="muted">pendiente</td>
+      <td class="num">3d</td>
+    </tr>
+    <tr>
+      <td>0023-00066632</td>
+      <td>25/08/2026</td>
+      <td class="">26/08/2026</td>
+      <td>EUROSWISS</td>
+      <td class="muted">LISTEN S.A.</td>
+      <td class="num atip">100</td>
+      <td class="muted">pendiente</td>
+      <td class="num">2d</td>
+    </tr>
+    <tr>
+      <td>A-0003-00173423</td>
+      <td>25/08/2026</td>
+      <td class="">27/08/2026</td>
+      <td>DISTRISAM S.A.</td>
+      <td class="muted">ORGANON ARGENTINA S.A.</td>
+      <td class="num atip">124</td>
+      <td class="muted">pendiente</td>
+      <td class="num">2d</td>
+    </tr>
+    <tr>
+      <td>0002-00027324-001</td>
+      <td>25/08/2026</td>
+      <td class="muted">sin sello</td>
+      <td>NATURFARMA</td>
+      <td class="muted">NATUFARMA S.A.</td>
+      <td class="num atip">377</td>
+      <td class="muted">pendiente</td>
+      <td class="num">2d</td>
+    </tr>
+    <tr>
+      <td>0002-00058902</td>
+      <td>26/08/2026</td>
+      <td class="">27/08/2026</td>
+      <td>DROGUERIA GENERIA S.R.L</td>
+      <td class="muted">MAR LAB.</td>
+      <td class="num atip">2.285</td>
+      <td class="muted">pendiente</td>
+      <td class="num">1d</td>
+    </tr>
+    <tr>
+      <td>0007-00000927</td>
+      <td>27/08/2026</td>
+      <td class="">27/08/2026</td>
+      <td>DROGUERIA GENERIA S.R.L</td>
+      <td class="muted">BIOTENK S.A., CASASCO S.A.</td>
+      <td class="num atip">238</td>
+      <td class="muted">pendiente</td>
+      <td class="num">0d</td>
+    </tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">Droguería Garzón — Vista resumida generada automáticamente.</div>
+</div>
+
+<script>
+(function(){
+  const PW = "GarzonARG2026";
+  const KEY = "recepcionDashUnlocked";
+  function unlock(){
+    document.body.classList.remove('locked');
+    document.getElementById('pw-gate').classList.add('hidden');
+  }
+  if(localStorage.getItem(KEY) === '1'){
+    unlock();
+  } else {
+    document.getElementById('pw-form').addEventListener('submit', function(e){
+      e.preventDefault();
+      const val = document.getElementById('pw-input').value;
+      if(val === PW){
+        localStorage.setItem(KEY, '1');
+        unlock();
+      } else {
+        document.getElementById('pw-err').textContent = 'Clave incorrecta.';
+        document.getElementById('pw-input').value = '';
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>
